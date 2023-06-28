@@ -1,5 +1,5 @@
 # NOTE: This example requires the following prerequisites before executing the jobs
-# 1. Ensure spark-team-a namespace exists
+# 1. Ensure spark-team-a name space exists
 
 ---
 apiVersion: "sparkoperator.k8s.io/v1beta2"
@@ -31,6 +31,7 @@ spec:
     # Using Karpenter provisioner nodeSelectors and tolerations
     nodeSelector:
       NodeGroupType: "SparkComputeOptimized"
+      karpenter.sh/capacity-type: "on-demand"
     tolerations:
       - key: "spark-compute-optimized"
         operator: "Exists"
@@ -45,6 +46,7 @@ spec:
     # Using Karpenter provisioner nodeSelectors and tolerations
     nodeSelector:
       NodeGroupType: "SparkComputeOptimized"
+      karpenter.sh/capacity-type: "spot"
     tolerations:
       - key: "spark-compute-optimized"
         operator: "Exists"
